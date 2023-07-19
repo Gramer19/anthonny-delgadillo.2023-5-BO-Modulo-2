@@ -2,7 +2,7 @@ import pygame
 from game.components.enemies.enemy_manager import EnemyManager
 from game.components.spaceship import Spaceship
 
-from game.utils.constants import BG_2, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from game.utils.constants import BG_2, GL, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 
 
 class Game:
@@ -57,3 +57,4 @@ class Game:
             self.screen.blit(image, (self.x_pos_bg, self.y_pos_bg - image_height))
             self.y_pos_bg = 0
         self.y_pos_bg += self.game_speed
+   
