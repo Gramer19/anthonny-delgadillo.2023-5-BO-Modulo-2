@@ -14,7 +14,9 @@ ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
-BG_2 = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track_2.png'))
+BG_2 = pygame.image.load(os.path.join(IMG_DIR, 'Other/Tack_3.png'))
+
+MT = pygame.image.load(os.path.join(IMG_DIR, 'Other/Meteoro.png'))
 
 GL = pygame.image.load(os.path.join(IMG_DIR, 'Other/Galaxy.png'))
 
