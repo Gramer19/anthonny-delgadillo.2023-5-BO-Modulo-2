@@ -2,7 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 
 
-######{}  [] ' '
+######{}  [] ''
 from game.utils.constants import SPACESHIP_2, SCREEN_HEIGHT, SCREEN_WIDTH
 
 class Spaceship(Sprite):
@@ -16,7 +16,8 @@ class Spaceship(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
-    
+        self.type = 'player'
+        
     def update(self, user_input):
         if user_input[pygame.K_LEFT]:
             if self.rect.left > 0:
