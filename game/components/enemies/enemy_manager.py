@@ -27,7 +27,10 @@ class EnemyManager:
         else:
             x_speed = 5
             y_speed =2
-            move_x_for = [50,120]
+            move_x_for = [50,100]
             enemy = Enemy(enemy_type, x_speed, y_speed, move_x_for)
         if len(self.enemies) < 2:
             self.enemies.append(enemy)
+    
+    def reset(self):
+        self.enemies = []

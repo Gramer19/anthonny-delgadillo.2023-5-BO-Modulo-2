@@ -19,7 +19,11 @@ class Bullet(Sprite):
         self.owner = spaceship.type
 
     def update(self):
-        self.rect.y = self.SPEED
+        if self.owner == 'player':
+            self.rect.y -= self.SPEED
+        else:
+            self.rect.y += self.SPEED
+        
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
     
