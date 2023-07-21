@@ -22,9 +22,10 @@ class Game:
         self.enemy_manager = EnemyManager()
         self.bullet_manager = BulletManager()
         self.running = False
-        self.menu = Menu('press star...', self.screen)
+        self.menu = Menu('!READY¡ ! PRESS NOW!⤐', self.screen)
         self.death_count = 0 
         self.score = 0
+        self.highest_score = 0
 
     def execute(self):
         self.running = True
@@ -84,11 +85,17 @@ class Game:
         if self.death_count == 0:
             self.menu.draw(self.screen)
         else:
-            self.menu.update_message('!!HO NO YOUR SHIP EXPLODED¡¡')
+            self.menu.update_message('!!HO NO YOUR SHIP EXPLODED¡¡' )
+            self.menu.draw(self.screen)
+            self.menu.update_message(f'YOUR SCORE: ' + str(self.score)) 
+            self.menu.draw(self.screen)
+            self.menu.update_message('HIGHEST SCORE: ' + str(self.highest_score))
+            self.menu.draw(self.screen)
+            self.menu.update_message('TOTAL DEATH: ' + str(self.death_count))
             self.menu.draw(self.screen)
 
-        icon = self.image = pygame.transform.scale(ICON, (80,120))
-        self.screen.blit(icon,( half_screen_width - 50, half_screen_heigth - 150))
+        icon = self.image = pygame.transform.scale(ICON, (150,190))
+        self.screen.blit(icon,( half_screen_width - 50, half_screen_heigth - 220))
 
         self.menu.update(self)
     
