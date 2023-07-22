@@ -2,6 +2,7 @@ import pygame
 from game.components.bullet.bullet_manager import BulletManager
 from game.components.enemies.enemy_manager import EnemyManager
 from game.components.menu import Menu
+from game.components.power_up.power_up_manager import PowerUpManager
 from game.components.spaceship import Spaceship
 
 from game.utils.constants import BG_2, FONT_STYLE, GL, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
@@ -22,10 +23,11 @@ class Game:
         self.enemy_manager = EnemyManager()
         self.bullet_manager = BulletManager()
         self.running = False
-        self.menu = Menu('!READY¡ ! PRESS NOW!⤐', self.screen)
+        self.menu = Menu('!READY¡  ! PRESS NOW!⤐', self.screen)
         self.death_count = 0 
         self.score = 0
         self.highest_score = 0
+        self.power_up_manager = PowerUpManager()
 
     def execute(self):
         self.running = True
@@ -55,6 +57,7 @@ class Game:
         self.player.update(user_input, self)
         self.enemy_manager.update(self)
         self.bullet_manager.update(self)
+        self.power_up_manager.update(self)
 
     def draw(self):
         self.clock.tick(FPS)
@@ -64,6 +67,8 @@ class Game:
         self.enemy_manager.draw(self.screen)
         self.bullet_manager.draw(self.screen)
         self.draw_score()
+        self.power_up_manager.draw(self.screen)
+        self.draw_power_up_time()
         pygame.display.update()
         #pygame.display.flip()
 
@@ -85,13 +90,11 @@ class Game:
         if self.death_count == 0:
             self.menu.draw(self.screen)
         else:
-            self.menu.update_message('!!HO NO YOUR SHIP EXPLODED¡¡' )
-            self.menu.draw(self.screen)
-            self.menu.update_message(f'YOUR SCORE: ' + str(self.score)) 
-            self.menu.draw(self.screen)
-            self.menu.update_message('HIGHEST SCORE: ' + str(self.highest_score))
-            self.menu.draw(self.screen)
-            self.menu.update_message('TOTAL DEATH: ' + str(self.death_count))
+            self.update_highest_score()
+            self.menu.update_message(self.screen,'!!HO NO YOUR SHIP EXPLODED¡¡', 5, (220, 220, 220  ))
+            self.menu.update_message(self.screen, f'YOUR SCORE: {self.score}', 55, (203, 203, 203 )) 
+            self.menu.update_message(self.screen, f'HIGHEST SCORE: {self.highest_score}', 105, (187, 188, 188 ))
+            self.menu.update_message(self.screen, f'TOTAL DEATH: {self.death_count}', 155, (138, 138, 138 ))
             self.menu.draw(self.screen)
 
         icon = self.image = pygame.transform.scale(ICON, (150,190))
@@ -101,6 +104,10 @@ class Game:
     
     def update_score(self):
         self.score += 1
+
+    def update_highest_score(self):
+        if self.score > self.highest_score:
+            self.highest_score = self.score
     
     def draw_score(self):
         font = pygame.font.Font(FONT_STYLE, 30)
@@ -108,3 +115,15 @@ class Game:
         text_rect = text.get_rect()
         text_rect.center = (1000, 50)
         self.screen.blit(text, text_rect)
+
+    def draw_power_up_time(self):
+        if self.player.has_power_up:
+            time_to_show = round((self.player.power_time_up - pygame.time.get_ticks())/1000, 2)
+            if time_to_show >= 0:
+                message = f'{self.player.power_up_type.capitalize()} is anable for {time_to_show} second'
+                self.menu.update_message(self.screen, message, 0, (255, 255, 255))
+            
+            else:
+                self.player.has_power_up = False
+                self.player.power_up_type = DEFAULT_TYPE
+                self.player.set_image()

@@ -1,6 +1,6 @@
 import pygame
 
-from game.utils.constants import SCREEN_HEIGHT
+from game.utils.constants import SCREEN_HEIGHT, SHIELD_TYPE
 
 class BulletManager:
     def __init__(self):
@@ -24,9 +24,10 @@ class BulletManager:
                 self.enemy_bullets.remove(bullet)
 
             if bullet.rect.colliderect(game.player.rect) and (bullet.owner == 'enemy'):
-                game.death_count += 1
                 self.enemy_bullets.remove(bullet)
-                game.playing = False
+                if game.player.power_up_type != SHIELD_TYPE:
+                    game.death_count += 1
+                    game.playing = False
         
     def draw(self, screen):
         for bullet in self.player_bullets:
@@ -40,3 +41,5 @@ class BulletManager:
             self.player_bullets.append(bullet)
         elif bullet.owner == 'enemy' and len(self.enemy_bullets) < 1:
             self.enemy_bullets.append(bullet)
+    
+    
