@@ -7,7 +7,7 @@ from game.utils.constants import SCREEN_HEIGHT, SCREEN_WIDTH
 class Enemy(Sprite):
     ENEMY_WIDHT = 50
     ENEMY_HEIGHT = 70
-    Y_POS = -(ENEMY_HEIGHT + 5)
+    Y_POS = -(ENEMY_HEIGHT + 15)
     X_POS_RANGE = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
     SPEED_ON_Y = random.randint(1,2)
     SPEED_ON_X = random.randint(1,10)

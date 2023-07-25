@@ -4,14 +4,16 @@ from pygame.sprite import Sprite
 from game.utils.constants import BUTTON_PLAY, BUTTON_RESTART, SCREEN_HEIGHT, SCREEN_WIDTH
 
 class Button(Sprite):
-    BOTTON_WIDHT = 200
-    BOTTON_HEIGHT = 60
+    BOTTON_WIDHT = 300
+    BOTTON_HEIGHT = 180
+    BOTTON_WIDHT_RESET = 200
+    BOTTON_HEIGHT_RESET = 60
     def __init__(self,screen):
         self.screen = screen
         self.image_Button_Play = BUTTON_PLAY
         self.image_Button_Restart = BUTTON_RESTART
         self.image_Button_Play = pygame.transform.scale(self.image_Button_Play,(self.BOTTON_WIDHT, self.BOTTON_HEIGHT))
-        self.image_Button_Restart = pygame.transform.scale(self.image_Button_Restart,(self.BOTTON_WIDHT, self.BOTTON_HEIGHT))
+        self.image_Button_Restart = pygame.transform.scale(self.image_Button_Restart,(self.BOTTON_WIDHT_RESET, self.BOTTON_HEIGHT_RESET))
         self.rect_Play = self.image_Button_Play.get_rect(center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
         self.rect_Restart = self.image_Button_Restart.get_rect(center = (SCREEN_WIDTH / 2, 230))
 

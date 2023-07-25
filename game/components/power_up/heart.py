@@ -6,7 +6,7 @@ class Heart(Sprite):
     
     def __init__(self):
         self.image = HEART
-        self.cant = 8
+        self.cant = 3
     def decrementar_heart(self):
         self.cant -=1
      

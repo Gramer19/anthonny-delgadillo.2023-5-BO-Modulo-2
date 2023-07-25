@@ -19,29 +19,30 @@ class PowerUpManager:
             self.generate_power_up()
         for power_up in self.power_ups:
             power_up.update(game.game_speed, self.power_ups)
-            
+            print("estoy dentro")
             if game.player.rect.colliderect(power_up):
                 power_up.start_time = pygame.time.get_ticks()# hora de inicio
                 game.player.has_power_up = True
                 game.player.power_up_time_up = power_up.start_time + self.duration #si llega a este tiempo obtenido se acaba el power up
                 game.player.set_image(power_up.type)
-            self.power_ups.remove(power_up)
+                self.power_ups.remove(power_up)
 
     def draw(self, screen):
         for power_up in self.power_ups:
             power_up.draw(screen)
     
     def generate_power_up(self):
+        print()
         rand = random.randint(0,1)
-        """if rand ==0:
+        if rand ==0:
             power_up = Shield()
             self.power_ups.append(power_up)
-        else:"""
-        power_up = SuperStar()
+        else:
+            power_up = SuperStar()
         self.power_ups.append(power_up)
             
         self.when_appears += random.randint(5000, 10000)
-        #self.power_ups.append(power_up)
+        self.power_ups.append(power_up)
 
     def reset(self):
         self.power_ups = []

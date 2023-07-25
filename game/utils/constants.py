@@ -21,7 +21,7 @@ DEFAULT_TYPE = "default"
 SHIELD_TYPE = 'shield'
 STAR_TYPE = 'star'
 
-SPACESHIP = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
+SPACESHIP = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_2.png"))
 SPACESHIP_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_shield.png"))
 
 NAVE_STAR  = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_star.png")) 

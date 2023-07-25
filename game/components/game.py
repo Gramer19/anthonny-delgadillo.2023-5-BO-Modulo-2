@@ -48,7 +48,7 @@ class Game:
     
     def run(self):
         # Game loop: events - update - draw
-        self.heart.cant = 8
+        self.heart.cant = 3
         self.player.reset()
         self.enemyManager.reset()
         self.bulletManager.reset()
